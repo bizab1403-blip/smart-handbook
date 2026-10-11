@@ -5,6 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Sổ tay điện tử nghiệp vụ một cửa</title>
 <style>
+ body::before{
+  content:""; position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.07;
+  background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='380' height='240'><text x='190' y='120' text-anchor='middle' transform='rotate(-25 190 120)' font-family='sans-serif' font-size='20' font-weight='700' fill='%230b6bcb'>PHƯỜNG NAM CƯỜNG</text></svg>");
+}
+details{ background:color-mix(in srgb, var(--card) 90%, transparent); }
+header{ background:color-mix(in srgb, var(--bg) 92%, transparent); }
 :root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f4f7fb;--card:#fff;--tx:#14213d;--mut:#5b6b85;--pri:#0b6bcb;--pri2:#e6f1fd;--ok:#12805c;--warn:#b45309;--bd:#dbe4f0}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1522;--card:#17202f;--tx:#e8eefb;--mut:#9fb0cc;--pri:#5aa9ff;--pri2:#16314f;--ok:#4cd1a1;--warn:#f5b461;--bd:#2a3850}}
 :root[data-theme="dark"]{--bg:#0e1522;--card:#17202f;--tx:#e8eefb;--mut:#9fb0cc;--pri:#5aa9ff;--pri2:#16314f;--ok:#4cd1a1;--warn:#f5b461;--bd:#2a3850}
