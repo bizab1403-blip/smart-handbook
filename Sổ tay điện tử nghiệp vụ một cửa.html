@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sổ tay điện tử nghiệp vụ một cửa</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#f4f7fb;--card:#fff;--tx:#14213d;--mut:#5b6b85;--pri:#0b6bcb;--pri2:#e6f1fd;--ok:#12805c;--warn:#b45309;--bd:#dbe4f0}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1522;--card:#17202f;--tx:#e8eefb;--mut:#9fb0cc;--pri:#5aa9ff;--pri2:#16314f;--ok:#4cd1a1;--warn:#f5b461;--bd:#2a3850}}
+:root[data-theme="dark"]{--bg:#0e1522;--card:#17202f;--tx:#e8eefb;--mut:#9fb0cc;--pri:#5aa9ff;--pri2:#16314f;--ok:#4cd1a1;--warn:#f5b461;--bd:#2a3850}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding:12px 14px 8px;border-bottom:1px solid var(--bd)}
+.top{display:flex;gap:10px;align-items:center;max-width:900px;margin:auto}
+h1{font-size:18px;margin:0;flex:1}
+h1 small{display:block;font-weight:400;color:var(--mut);font-size:12px}
+button,.chip{font:inherit;cursor:pointer}
+.ic{border:1px solid var(--bd);background:var(--card);color:var(--tx);border-radius:10px;padding:6px 10px}
+.sb{max-width:900px;margin:10px auto 0}
+.sb input{width:100%;padding:12px 14px;border-radius:12px;border:1.5px solid var(--bd);background:var(--card);color:var(--tx);font:inherit}
+.sb input:focus{outline:2px solid var(--pri);border-color:transparent}
+nav{max-width:900px;margin:8px auto 0;display:flex;gap:6px;overflow-x:auto;padding-bottom:4px}
+.chip{white-space:nowrap;border:1px solid var(--bd);background:var(--card);color:var(--tx);padding:6px 12px;border-radius:99px;font-size:14px}
+.chip.on{background:var(--pri);color:#fff;border-color:var(--pri)}
+main{max-width:900px;margin:auto;padding:14px}
+section{margin-bottom:22px}
+h2{font-size:17px;margin:4px 0 10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+details{background:var(--card);border:1px solid var(--bd);border-radius:14px;margin-bottom:8px;overflow:hidden}
+summary{padding:12px 14px;cursor:pointer;font-weight:600;list-style:none;display:flex;gap:10px;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"＋";margin-left:auto;color:var(--pri)}
+details[open] summary::after{content:"－"}
+.em{font-size:22px}
+.body{padding:2px 14px 14px;border-top:1px dashed var(--bd)}
+.body h3{font-size:13px;text-transform:uppercase;letter-spacing:.04em;color:var(--mut);margin:14px 0 6px}
+.tag{display:inline-block;background:var(--pri2);color:var(--pri);border-radius:8px;padding:2px 8px;font-size:12px;margin-right:4px}
+.ck label{display:flex;gap:8px;padding:6px 0;align-items:flex-start}
+.ck input{margin-top:5px;width:18px;height:18px;accent-color:var(--ok)}
+.ck input:checked+span{color:var(--mut);text-decoration:line-through}
+ul.tips{margin:0;padding-left:20px}
+.note{background:var(--pri2);border-radius:10px;padding:8px 12px;margin:6px 0;font-size:14px}
+.warn{background:rgba(245,158,11,.14);color:var(--tx);border-left:4px solid var(--warn)}
+.steps{counter-reset:s;list-style:none;padding:0;margin:0}
+.steps li{counter-increment:s;display:flex;gap:10px;margin:8px 0;align-items:flex-start}
+.steps li::before{content:counter(s);flex:none;width:26px;height:26px;border-radius:50%;background:var(--pri);color:#fff;text-align:center;font-size:13px;line-height:26px;font-weight:700}
+.act{display:inline-block;border-radius:8px;padding:2px 8px;font-size:12px;font-weight:600;background:rgba(18,128,92,.15);color:var(--ok)}
+a{color:var(--pri)}
+.btn{display:inline-block;margin:3px 4px 3px 0;padding:8px 12px;border-radius:10px;background:var(--card);border:1px solid var(--bd);text-decoration:none;font-size:14px}
+.big{display:block;text-align:center;background:var(--pri);color:#fff;padding:12px;border-radius:12px;text-decoration:none;font-weight:600;margin:8px 0}
+table{width:100%;border-collapse:collapse;font-size:14px}
+td,th{border-bottom:1px solid var(--bd);padding:6px;text-align:left;vertical-align:top}
+.sc{overflow-x:auto}
+.empty{text-align:center;color:var(--mut);padding:30px;display:none}
+.reset{font-size:12px;color:var(--mut);background:none;border:0;text-decoration:underline;padding:4px 0}
+</style>
+</head>
+<body>
+<header>
+ <div class="top">
+  <h1>📘 Sổ tay điện tử nghiệp vụ<small>Trung tâm Phục vụ Hành chính công phường Nam Cường</small></h1>
+  <button class="ic" id="th" aria-label="Đổi giao diện sáng/tối">🌓</button>
+ </div>
+ <div class="sb"><input id="q" type="search" placeholder="🔍 Tìm nhanh: khai sinh, ủy quyền, trễ hạn, CT01..." autocomplete="off"></div>
+ <nav id="nav"></nav>
+</header>
+<main id="m"><div class="empty" id="em">Không tìm thấy nội dung phù hợp. Thử từ khóa ngắn hơn nhé.</div></main>
+<script>
+const P=[
+{e:"👶",n:"Đăng ký khai sinh",t:"hộ tịch",d:["Tờ khai đăng ký khai sinh (mẫu)","Giấy chứng sinh (bản chính). Không có → văn bản người làm chứng hoặc giấy cam đoan","Xuất trình CCCD/căn cước/VNeID của người đi khai","Giấy ủy quyền (nếu ủy quyền; người thân ruột thì không cần chứng thực)"],k:["Tiếp nhận sau 15 giờ → hẹn trả vào ngày làm việc tiếp theo","Hồ sơ online: người dân xác nhận Giấy khai sinh điện tử tối đa 1 ngày, không phản hồi vẫn xử lý tiếp","Cha mẹ đã kết hôn: tra cứu tình trạng hôn nhân trên CSDL; không có dữ liệu thì xác minh trong 03 ngày làm việc","Ông, bà, người thân đi khai không cần ủy quyền nhưng phải thống nhất với cha mẹ về nội dung khai sinh"]},
+{e:"🕯️",n:"Đăng ký khai tử",t:"hộ tịch",d:["Tờ khai đăng ký khai tử (mẫu)","Giấy báo tử hoặc giấy tờ thay thế","Xuất trình giấy tờ tùy thân của người đi khai","Giấy tờ chứng minh nơi cư trú cuối cùng (nếu hệ thống không tra cứu được)","Văn bản ủy quyền (nếu có)"],k:["Thời hạn khai tử: 15 ngày kể từ ngày có người chết","Người chết đã lâu, không có giấy báo tử → nộp giấy tờ, chứng cứ chứng minh sự kiện chết","Không xác định được nơi cư trú cuối cùng → dùng giấy tờ chứng minh nơi chết/nơi phát hiện thi thể"]},
+{e:"💍",n:"Đăng ký kết hôn",t:"hộ tịch",d:["Tờ khai đăng ký kết hôn (hai bên có thể khai chung 1 tờ)","Xuất trình CCCD/căn cước của hai bên","Giấy xác nhận tình trạng hôn nhân (nếu đăng ký khác nơi cư trú)","Giấy tờ chứng minh cư trú (nếu hệ thống không khai thác được)"],k:["Hai bên nam, nữ phải có mặt khi nhận kết quả, đối chiếu giấy tờ, ký Sổ và Giấy chứng nhận","Mỗi bên nhận 01 bản chính Giấy chứng nhận kết hôn","Từng ly hôn/hủy kết hôn ở nước ngoài mà CSDL chưa ghi chú → hướng dẫn ghi chú vào sổ hộ tịch trước"]},
+{e:"📄",n:"Cấp Giấy xác nhận tình trạng hôn nhân",t:"hộ tịch",d:["Tờ khai theo mẫu / mẫu điện tử","Xuất trình giấy tờ tùy thân","Đã ly hôn/vợ, chồng đã chết: chỉ cần khai thông tin bản án hoặc giấy chứng tử, cán bộ tự tra cứu","Cấp lại: nộp lại giấy xác nhận đã cấp trước đó","Văn bản ủy quyền (nếu có)"],k:["Mất giấy cũ khi cấp lại để kết hôn: xác minh với nơi dự định đăng ký trước đây trong 03 ngày làm việc","Không xác minh được → cho lập văn bản cam đoan về tình trạng hôn nhân"]},
+{e:"🖨️",n:"Chứng thực bản sao từ bản chính",t:"chứng thực",d:["Bản chính giấy tờ, văn bản cần chứng thực","Bản sao để chứng thực"],k:["Số lượng theo nhu cầu của người dân"]},
+{e:"✍️",n:"Chứng thực chữ ký",t:"chứng thực",d:["Giấy tờ cần chứng thực chữ ký","CCCD/căn cước của người yêu cầu"],k:["Áp dụng cả trường hợp điểm chỉ và người không thể ký, không thể điểm chỉ"]},
+{e:"👨‍👩‍👧",n:"Đăng ký nhận cha, mẹ, con",t:"hộ tịch",d:["Tờ khai theo mẫu","Giấy tờ chứng minh quan hệ cha, mẹ, con (nếu có)","CCCD/căn cước của các bên"],k:[]},
+{e:"🏠",n:"Đăng ký thường trú",t:"cư trú",d:["Tờ khai thay đổi thông tin cư trú (CT01)","Giấy tờ chứng minh chỗ ở hợp pháp","CCCD/căn cước"],k:[]},
+{e:"🧳",n:"Đăng ký tạm trú",t:"cư trú",d:["Tờ khai thay đổi thông tin cư trú (CT01)","CCCD/căn cước","Giấy tờ chứng minh chỗ ở hợp pháp"],k:[]},
+{e:"🪪",n:"Cấp lại thẻ căn cước công dân",t:"căn cước",d:["Tờ khai cấp CCCD","CCCD cũ (nếu có)","Thông tin trong CSDL quốc gia về dân cư"],k:[]}];
+const G=["Không tự ý yêu cầu thêm giấy tờ ngoài quy định","Có bản chính để đối chiếu thì không đòi thêm bản sao","Giấy tờ có trong CSDL dân cư/VNeID thì không bắt nộp lại","Hồ sơ thiếu: nói rõ thiếu gì, ghi vào Phiếu yêu cầu bổ sung"];
+const Q=[["Tiếp nhận","Nhận hồ sơ trực tiếp/trực tuyến/bưu chính, kiểm tra thành phần, đối chiếu giấy tờ gốc","Phiếu bổ sung (Mẫu 02) nếu thiếu"],["Kiểm tra tính hợp lệ","Đủ, đúng, thống nhất thông tin. Không đủ điều kiện thì nêu rõ lý do","Phiếu từ chối (Mẫu 03)"],["Nhập hệ thống","Nhập thông tin, số hóa, tạo mã hồ sơ điện tử, in và giao Phiếu hẹn","Phiếu tiếp nhận (Mẫu 01)"],["Chuyển xử lý","Chuyển công chức chuyên môn/cơ quan có thẩm quyền, cập nhật trạng thái; liên thông thì chuyển theo quy định",""],["Thẩm định, xử lý","Kiểm tra điều kiện, xác minh nếu cần, soạn kết quả",""],["Trình ký, phê duyệt","Lãnh đạo ký, đóng dấu. Không chấp thuận phải nêu lý do bằng văn bản",""],["Trả kết quả","Trực tiếp/bưu chính/trực tuyến. Kiểm tra giấy tờ, hướng dẫn soát thông tin, ký nhận",""],["Theo dõi, lưu trữ","Cập nhật trạng thái “đã giải quyết”, lưu hồ sơ giấy và điện tử","Sổ theo dõi (Mẫu 06)"],["Xử lý phát sinh","Quá hạn → xin lỗi, hẹn lại; khiếu nại → tiếp nhận; lỗi hệ thống → làm thủ công, cập nhật sau","Phiếu xin lỗi (Mẫu 04)"]];
+const S=[
+["📎","Hồ sơ thiếu hoặc sai thành phần","Chỉ rõ thiếu gì, hướng dẫn cụ thể, lập Phiếu yêu cầu bổ sung (Mẫu 02)","Không nói chung chung “thiếu giấy tờ”"],
+["😤","Người dân bức xúc","Bình tĩnh lắng nghe, giải thích căn cứ pháp lý, cần thì mời lãnh đạo hỗ trợ","Không tranh cãi, không tỏ thái độ khó chịu"],
+["🚫","Hồ sơ không đủ điều kiện","Giải thích lý do, lập Phiếu từ chối (Mẫu 03), gợi ý hướng xử lý khác","Dẫn đúng căn cứ pháp lý"],
+["⏰","Hồ sơ trễ hạn","Chủ động báo trước, lập Phiếu xin lỗi và hẹn lại (Mẫu 04), đẩy nhanh xử lý","Không để người dân phải tự hỏi"],
+["🤔","Người dân không hiểu quy trình","Giải thích từng bước, hướng dẫn viết mẫu, hỗ trợ trực tiếp","Kiên nhẫn, dùng từ dễ hiểu"],
+["🔤","Nhầm thông tin (tên, ngày sinh, CCCD)","Đối chiếu giấy tờ gốc, hướng dẫn chỉnh sửa; đã xử lý rồi thì làm thủ tục đính chính",""],
+["⚡","Xin làm nhanh, “ưu tiên”","Giải thích nguyên tắc công bằng, giải quyết theo thứ tự tiếp nhận","Tuyệt đối không nhận lợi ích cá nhân"],
+["💻","Nộp online nhưng sai/thiếu file","Kiểm tra trên hệ thống, gửi yêu cầu bổ sung, hướng dẫn nộp lại",""],
+["🔗","Hồ sơ liên thông nhiều cơ quan","Theo dõi tiến độ, chủ động liên hệ đơn vị liên quan, báo người dân",""],
+["🧾","Đến nhận kết quả nhưng quên phiếu hẹn","Tra cứu hệ thống, xác minh bằng CCCD, cho ký nhận đúng quy định",""],
+["🕵️","Hồ sơ có dấu hiệu giả mạo","Đối chiếu bản gốc, tra cứu, báo lãnh đạo xin ý kiến","Chưa xác minh thì không tự kết luận"],
+["📣","Khiếu nại tại quầy","Ghi nhận nội dung, giải thích quy trình, hướng dẫn làm đơn khiếu nại","Giữ thái độ bình tĩnh"],
+["👴","Người lớn tuổi không biết viết","Hướng dẫn, hỗ trợ ghi","Không làm thay hoàn toàn"],
+["🔍","Hồ sơ cần xác minh thực tế","Phối hợp địa phương xác minh","Ghi nhận đầy đủ"],
+["🙇","Sai sót do cán bộ","Báo cáo, chỉnh sửa, xin lỗi","Trung thực, kịp thời"],
+["📑","Nộp hoặc nhận thay qua ủy quyền","Kiểm tra giấy ủy quyền và CCCD, xác minh kỹ","Đúng quy định pháp lý"],
+["🌏","Hồ sơ yếu tố nước ngoài","Kiểm tra hợp pháp hóa lãnh sự, chuyển cấp có thẩm quyền","Không xử lý vượt thẩm quyền"],
+["🛠️","Hệ thống bị lỗi","Tiếp nhận thủ công, cập nhật sau","Thông báo rõ cho người dân"],
+["📹","Người dân quay video","Giữ chuẩn mực, báo cáo nếu cần","Không phản ứng tiêu cực"],
+["⚖️","Hồ sơ có tranh chấp","Tạm dừng, hướng dẫn đến cơ quan phù hợp","Chưa rõ thì không giải quyết"],
+["🚨","Có dấu hiệu tiêu cực","Báo cáo lãnh đạo","Không tiếp tay"]];
+const F1=[["Mẫu 01","Phiếu tiếp nhận hồ sơ và hẹn trả kết quả","110tS6WO4ABuTqwE568_g1Uqkv7YkLmAn"],["Mẫu 02","Phiếu yêu cầu bổ sung hồ sơ","19791maReuRpMyr-jGT-KPOqpw_Ks4mJW"],["Mẫu 03","Phiếu từ chối giải quyết hồ sơ","1mdiF7dk4xFmbqIjOFqcVE1aD8pKR9BFw"],["Mẫu 04","Phiếu xin lỗi và hẹn lại","1PWKG6E36W8wmn0ZOn6oYxef-JIb53d7p"],["Mẫu 05","Phiếu kiểm soát quá trình xử lý","1kaVajoBHyfnN5mT4ZepHKfnm_QbRhYoN"],["Mẫu 06","Sổ theo dõi hồ sơ","1N7hJFJVCdnoqD4NER_HOzb2TND5No2Cl"]];
+const CT=[["CT01","Tờ khai thay đổi thông tin cư trú","1WzpCBeEUZg7OgG3DwdR3ogCpwGG-g8Ab"],["CT02","Tờ khai đề nghị cấp văn bản đồng ý đăng ký thường trú","1fiKKRg-a-aMr-2ohR-MzzKC09zdnN1-l"],["CT03","Phiếu khai báo tạm vắng","1bhbs-SlNcvxR4wjK5Frz_cWG07OnUiuM"],["CT04","Phiếu tiếp nhận hồ sơ và hẹn trả kết quả","1PckfADYtQMdaX78ImXF5Mo8X8_6pbjPB"],["CT05","Phiếu hướng dẫn bổ sung hoàn thiện hồ sơ","16jp2LtDM4kW-546opDO4GlbS-de9kRQR"],["CT06","Phiếu từ chối tiếp nhận, giải quyết hồ sơ","1nvAURoCkJHE-kApJIuwvTW5KH1kOdch0"],["CT07","Xác nhận thông tin về cư trú","1MPIDt27Ry59QL8XbiVYEQIWxBBjGhPq5"],["CT08","Thông báo kết quả giải quyết, hủy thủ tục đăng ký cư trú","1zXIZJmLHU5KxzZGisvDdgRBXnH62VnGo"],["CT09","Quyết định hủy bỏ kết quả đăng ký","1abGube880KOhlzbsUyK6GgBGDbFY1-hs"],["CT10","Phiếu xác minh thông tin về cư trú","1WLQa-P2MoCfgCqFKtvzFS7FjwZK6oB_c"],["CT11","Phiếu đề xuất phê duyệt hồ sơ","1gcENRmAm2mXt9EfFC9rIC0fClRPQQRdm"]];
+const L=[["Hộ tịch","Luật Hộ tịch 2014 · NĐ 123/2015/NĐ-CP · TT 04/2020/TT-BTP"],["Cư trú","Luật Cư trú 2020 · TT 55/2021/TT-BCA · TT 56/2021/TT-BCA (biểu mẫu CT01–CT16)"],["Chứng thực","NĐ 23/2015/NĐ-CP · TT 01/2020/TT-BTP"],["Một cửa, liên thông","NĐ 61/2018/NĐ-CP · NĐ 107/2021/NĐ-CP · TT 01/2018/TT-VPCP"],["Kiểm soát TTHC","NĐ 63/2010/NĐ-CP · NĐ 92/2017/NĐ-CP"],["Văn thư, lưu trữ","NĐ 30/2020/NĐ-CP · Luật Lưu trữ 2011"],["Chuyển đổi số, TTHC điện tử","NĐ 45/2020/NĐ-CP · QĐ 06/QĐ-TTg ngày 06/01/2022"],["Chung","Luật Tổ chức chính quyền địa phương 2015 (sđ 2019) · Luật Cán bộ, công chức 2008 (sđ 2019) · Luật Ban hành VBQPPL 2015 (sđ 2020)"]];
+const gd=i=>`https://docs.google.com/document/d/${i}/edit`;
+const sec=[["tt","📂 Thủ tục"],["qt","🔄 Quy trình"],["th","💬 Tình huống"],["bm","🧰 Biểu mẫu"],["pl","⚖️ Pháp lý"],["lh","☎️ Liên hệ"]];
+let st={};try{st=JSON.parse(localStorage.getItem("ck")||"{}")}catch(e){}
+const save=()=>{try{localStorage.setItem("ck",JSON.stringify(st))}catch(e){}};
+const m=document.getElementById("m");
+let h="";
+h+=`<section id="s-tt"><h2>📂 Thủ tục hành chính phổ biến</h2><div class="note warn">Nhắc nhanh: ${G.join(" · ")}</div>`;
+P.forEach((p,i)=>{h+=`<details class="it"><summary><span class="em">${p.e}</span><span>${p.n}<br><span class="tag">${p.t}</span></span></summary><div class="body"><h3>Checklist hồ sơ (tích để kiểm tra)</h3><div class="ck">${p.d.map((x,j)=>`<label><input type="checkbox" data-k="${i}-${j}" ${st[i+"-"+j]?"checked":""}><span>${x}</span></label>`).join("")}</div><button class="reset" data-r="${i}">Bỏ tích tất cả</button>${p.k.length?`<h3>Lưu ý nghiệp vụ</h3><ul class="tips">${p.k.map(x=>`<li>${x}</li>`).join("")}</ul>`:""}</div></details>`});
+h+=`</section><section id="s-qt"><h2>🔄 Quy trình xử lý hồ sơ 9 bước</h2><details class="it" open><summary><span class="em">🧭</span><span>Từ tiếp nhận đến lưu trữ</span></summary><div class="body"><ol class="steps">${Q.map(q=>`<li><div><b>${q[0]}</b><br>${q[1]}${q[2]?`<br><span class="act">${q[2]}</span>`:""}</div></li>`).join("")}</ol><h3>Phân công</h3><div class="sc"><table><tr><td>Tiếp nhận</td><td>Công chức một cửa</td></tr><tr><td>Xử lý</td><td>Công chức chuyên môn</td></tr><tr><td>Ký duyệt</td><td>Lãnh đạo UBND</td></tr></table></div></div></details></section>`;
+h+=`<section id="s-th"><h2>💬 Tình huống thường gặp (${S.length})</h2>${S.map(s=>`<details class="it"><summary><span class="em">${s[0]}</span><span>${s[1]}</span></summary><div class="body"><h3>Cách xử lý</h3><div>${s[2]}</div>${s[3]?`<div class="note warn">⚠️ ${s[3]}</div>`:""}</div></details>`).join("")}</section>`;
+h+=`<section id="s-bm"><h2>🧰 Biểu mẫu</h2><details class="it" open><summary><span class="em">📋</span><span>Bộ 6 biểu mẫu một cửa</span></summary><div class="body">${F1.map(f=>`<a class="btn" target="_blank" rel="noopener" href="${gd(f[2])}"><b>${f[0]}</b> · ${f[1]}</a>`).join("")}</div></details><details class="it"><summary><span class="em">🏘️</span><span>Biểu mẫu cư trú CT01 – CT16</span></summary><div class="body">${CT.map(f=>`<a class="btn" target="_blank" rel="noopener" href="${gd(f[2])}"><b>${f[0]}</b> · ${f[1]}</a>`).join("")}<p>CT12 đến CT16 (thống kê, túi hồ sơ, các loại sổ): xem toàn bộ bộ biểu mẫu.</p><a class="big" target="_blank" rel="noopener" href="https://thuvienphapluat.vn/van-ban/Quyen-dan-su/Thong-tu-56-2021-TT-BCA-bieu-mau-trong-dang-ky-quan-ly-cu-tru-466835.aspx">Mở toàn bộ CT01–CT16</a></div></details><details class="it"><summary><span class="em">📝</span><span>Mẫu văn bản hành chính</span></summary><div class="body">Công văn, tờ trình, báo cáo, biên bản, giấy mời (theo NĐ 30/2020).<a class="big" target="_blank" rel="noopener" href="https://luatvietnam.vn/bieu-mau/bieu-mau-van-ban-hanh-chinh-571-27528-article.html">Xem mẫu văn bản hành chính</a></div></details></section>`;
+h+=`<section id="s-pl"><h2>⚖️ Cơ sở pháp lý</h2>${L.map(l=>`<details class="it"><summary><span>${l[0]}</span></summary><div class="body">${l[1].split(" · ").map(x=>`<div>• ${x}</div>`).join("")}</div></details>`).join("")}</section>`;
+h+=`<section id="s-lh"><h2>☎️ Liên hệ</h2><details class="it" open><summary><span class="em">🏛️</span><span>Trung tâm Phục vụ Hành chính công phường Nam Cường</span></summary><div class="body"><div>📍 Phường Nam Cường, thành phố Yên Bái, tỉnh Yên Bái</div><a class="big" href="tel:0977793520">📞 Gọi 0977 793 520</a><a class="big" href="mailto:dothinganha@laocai.gov.vn">✉️ dothinganha@laocai.gov.vn</a><a class="big" target="_blank" rel="noopener" href="https://dichvucong.gov.vn/p/home/dvc-trang-chu.html">🌐 Cổng dịch vụ công quốc gia</a><h3>Giờ làm việc (thứ Hai – thứ Sáu, trừ lễ, Tết)</h3><div>Sáng 07:30 – 12:00 · Chiều 13:30 – 17:00</div><h3>Kênh phản ánh, kiến nghị</h3><div>Trực tiếp tại Trung tâm · Điện thoại · Email</div></div></details></section>`;
+m.insertAdjacentHTML("afterbegin",h);
+const nav=document.getElementById("nav");
+nav.innerHTML=`<button class="chip on" data-s="all">Tất cả</button>`+sec.map(s=>`<button class="chip" data-s="${s[0]}">${s[1]}</button>`).join("");
+let cur="all";
+function apply(){const q=document.getElementById("q").value.trim().toLowerCase();let any=false;
+sec.forEach(s=>{const el=document.getElementById("s-"+s[0]);let vis=0;
+el.querySelectorAll("details.it").forEach(d=>{const ok=!q||d.textContent.toLowerCase().includes(q);d.style.display=ok?"":"none";if(ok){vis++;if(q&&d.querySelector(".body"))d.open=true}});
+const show=vis>0&&(q||cur==="all"||cur===s[0]);el.style.display=show?"":"none";if(show)any=true});
+document.getElementById("em").style.display=any?"none":"block"}
+nav.onclick=e=>{const b=e.target.closest(".chip");if(!b)return;cur=b.dataset.s;nav.querySelectorAll(".chip").forEach(c=>c.classList.toggle("on",c===b));apply();scrollTo({top:0,behavior:"smooth"})};
+document.getElementById("q").oninput=apply;
+m.addEventListener("change",e=>{if(e.target.dataset.k){st[e.target.dataset.k]=e.target.checked;save()}});
+m.addEventListener("click",e=>{const r=e.target.dataset.r;if(r!==undefined){m.querySelectorAll(`[data-k^="${r}-"]`).forEach(c=>{c.checked=false;delete st[c.dataset.k]});save()}});
+document.getElementById("th").onclick=()=>{const r=document.documentElement,dk=getComputedStyle(r).getPropertyValue("--bg").trim()==="#0e1522";r.dataset.theme=dk?"light":"dark"};
+apply();
+</script>
+</body>
+</html>
