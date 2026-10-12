@@ -6,10 +6,12 @@
 <style>
  html::before{
   content:""; position:fixed; inset:0; z-index:-2; pointer-events:none;
-  background:url("images/nenweb.png") center / min(70vw,420px) no-repeat;
+  background:url("images/nenweb.png") center / min(95vw,760px) no-repeat;
   opacity:.5;
 }
  body::before{
+  details{ background:color-mix(in srgb, var(--card) 70%, transparent); }
+  header{ background:color-mix(in srgb, var(--bg) 80%, transparent); }
   content:""; position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.07;
   background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='380' height='240'><text x='190' y='120' text-anchor='middle' transform='rotate(-25 190 120)' font-family='sans-serif' font-size='20' font-weight='700' fill='%230b6bcb'>PHƯỜNG NAM CƯỜNG</text></svg>");
 }
