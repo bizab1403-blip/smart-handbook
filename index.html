@@ -82,10 +82,12 @@ header{position:relative;top:auto}
 nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:6;max-width:none;margin:0;padding:8px max(14px,calc((100% - 900px)/2));background:color-mix(in srgb,var(--bg) 94%,transparent);border-bottom:1px solid var(--bd);scrollbar-width:none}
 nav::-webkit-scrollbar{display:none}
 @media(min-width:1280px){
-  header{position:sticky;top:0;z-index:7}
-  nav{position:sticky;top:316px;float:left;margin:16px 0 0 16px;width:calc((100vw - 900px)/2 - 32px);padding:0;background:none;border:0;flex-direction:column;overflow:visible;gap:8px}
+  nav{position:sticky;top:16px;float:left;margin:16px 0 0 16px;width:calc((100vw - 900px)/2 - 32px);padding:0;background:none;border:0;flex-direction:column;overflow:visible;gap:8px}
   .chip{width:100%;text-align:left;border-radius:12px;white-space:normal}
 }
+nav .nsb{flex:0 0 190px;min-width:0;padding:8px 12px;border-radius:99px;border:1.5px solid var(--bd);background:var(--card);color:var(--tx);font:inherit;font-size:14px}
+nav .nsb:focus{outline:2px solid var(--pri);border-color:transparent}
+@media(min-width:1280px){nav .nsb{flex:none;width:100%;border-radius:12px}}
 </style>
 </head>
 <body>
@@ -172,6 +174,7 @@ h+=`<section id="s-lh"><h2>☎️ Liên hệ</h2><details class="it" open><summa
 m.insertAdjacentHTML("afterbegin",h);
 const nav=document.getElementById("nav");
 nav.innerHTML=`<button class="chip on" data-s="all">Tất cả</button>`+sec.map(s=>`<button class="chip" data-s="${s[0]}">${s[1]}</button>`).join("");
+nav.insertAdjacentHTML("afterbegin",'<input id="q2" class="nsb" type="search" placeholder="🔍 Tìm nhanh..." autocomplete="off">');
 let cur="all";
 function apply(){const q=document.getElementById("q").value.trim().toLowerCase();let any=false;
 sec.forEach(s=>{const el=document.getElementById("s-"+s[0]);let vis=0;
@@ -179,7 +182,9 @@ el.querySelectorAll("details.it").forEach(d=>{const ok=!q||d.textContent.toLower
 const show=vis>0&&(q||cur==="all"||cur===s[0]);el.style.display=show?"":"none";if(show)any=true});
 document.getElementById("em").style.display=any?"none":"block"}
 nav.onclick=e=>{const b=e.target.closest(".chip");if(!b)return;cur=b.dataset.s;nav.querySelectorAll(".chip").forEach(c=>c.classList.toggle("on",c===b));apply();scrollTo({top:0,behavior:"smooth"})};
-document.getElementById("q").oninput=apply;
+const s1=document.getElementById("q"),s2=document.getElementById("q2");
+s1.oninput=()=>{s2.value=s1.value;apply()};
+s2.oninput=()=>{s1.value=s2.value;apply()};
 m.addEventListener("change",e=>{if(e.target.dataset.k){st[e.target.dataset.k]=e.target.checked;save()}});
 m.addEventListener("click",e=>{const r=e.target.dataset.r;if(r!==undefined){m.querySelectorAll(`[data-k^="${r}-"]`).forEach(c=>{c.checked=false;delete st[c.dataset.k]});save()}});
 document.getElementById("th").onclick=()=>{const r=document.documentElement,dk=getComputedStyle(r).getPropertyValue("--bg").trim()==="#0e1522";r.dataset.theme=dk?"light":"dark"};
