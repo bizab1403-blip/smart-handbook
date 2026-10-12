@@ -76,6 +76,9 @@ td,th{border-bottom:1px solid var(--bd);padding:6px;text-align:left;vertical-ali
   header::before{ left:0;  background-image:url('images/ảnh trái.png'); }
   header::after{  right:0; background-image:url('images/Ảnh phải.png'); }
 }
+ header{position:relative;top:auto}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:6;max-width:none;margin:0;padding:8px max(14px,calc((100% - 900px)/2));background:color-mix(in srgb,var(--bg) 94%,transparent);border-bottom:1px solid var(--bd);scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
 </style>
 </head>
 <body>
@@ -85,8 +88,8 @@ td,th{border-bottom:1px solid var(--bd);padding:6px;text-align:left;vertical-ali
   <button class="ic" id="th" aria-label="Đổi giao diện sáng/tối">🌓</button>
   </div>
   <div class="sb"><input id="q" type="search" placeholder="🔍 Tìm nhanh: khai sinh, ủy quyền, trễ hạn, CT01..." autocomplete="off"></div>
+ </header>
  <nav id="nav"></nav>
-</header>
 <main id="m"><div class="empty" id="em">Không tìm thấy nội dung phù hợp. Thử từ khóa ngắn hơn nhé.</div></main>
 <script>
 const P=[
